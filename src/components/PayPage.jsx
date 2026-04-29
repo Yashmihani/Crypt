@@ -55,7 +55,7 @@ const PayPage = ({ darkMode }) => {
         <div className="text-center mb-6">
           <span className="text-4xl">💎</span>
           <h1 className="text-2xl font-bold mt-2">
-            <span className="text-purple-400">CryptPay</span>
+            <span className="text-purple-400">MATIC-Pay</span>
           </h1>
           <p className={label + ' text-sm mt-1'}>Payment Request</p>
         </div>

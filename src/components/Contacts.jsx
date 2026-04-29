@@ -15,13 +15,13 @@ const Contacts = ({ darkMode, onSelectContact }) => {
   const itemBg = darkMode ? 'bg-gray-800' : 'bg-gray-50 border border-gray-200'
 
   useEffect(() => {
-    const saved = localStorage.getItem('cryptpay_contacts')
+    const saved = localStorage.getItem('MATIC-Pay_contacts')
     if (saved) setContacts(JSON.parse(saved))
   }, [])
 
   const saveContacts = (updated) => {
     setContacts(updated)
-    localStorage.setItem('cryptpay_contacts', JSON.stringify(updated))
+    localStorage.setItem('MATIC-Pay_contacts', JSON.stringify(updated))
   }
 
   const addContact = () => {

@@ -41,7 +41,7 @@ const QRPayment = ({ account, darkMode }) => {
       ctx.fillRect(0, 0, 300, 300)
       ctx.drawImage(img, 0, 0, 300, 300)
       const a = document.createElement('a')
-      a.download = 'cryptpay-qr.png'
+      a.download = 'MATIC-Pay-qr.png'
       a.href = canvas.toDataURL('image/png')
       a.click()
       toast.success('QR Code downloaded!')

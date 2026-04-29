@@ -148,7 +148,7 @@ function App() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-2xl font-bold">
-                <span className="text-purple-400">CryptPay</span>
+                <span className="text-purple-400">MATIC-Pay</span>
               </h1>
               <p className={darkMode ? 'text-gray-500 text-xs mt-1' : 'text-gray-400 text-xs mt-1'}>
                 Polygon Amoy Testnet
