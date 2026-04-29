@@ -2,11 +2,11 @@ import React from 'react'
 
 const BottomNav = ({ activePage, setActivePage, darkMode }) => {
   const tabs = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'send', label: 'Send', icon: '💸' },
-    { id: 'contacts', label: 'Contacts', icon: '👥' },
-    { id: 'qr', label: 'QR', icon: '📷' },
-    { id: 'history', label: 'History', icon: '📋' },
+    { id: 'home',      label: 'Home',     icon: '🏠' },
+    { id: 'send',      label: 'Send',     icon: '💸' },
+    { id: 'contacts',  label: 'Contacts', icon: '👥' },
+    { id: 'analytics', label: 'Stats',    icon: '📊' },
+    { id: 'history',   label: 'History',  icon: '📋' },
   ]
 
   const navBg = darkMode

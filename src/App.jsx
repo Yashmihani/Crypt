@@ -13,6 +13,8 @@ import RequestPayment from './components/RequestPayment'
 import PayPage from './components/PayPage'
 import QRPayment from './components/QRPayment'
 import Contacts from './components/Contacts'
+import PriceCard from './components/PriceCard'
+import Analytics from './components/Analytics'
 
 function App() {
   const {
@@ -88,13 +90,16 @@ function App() {
     if (activePage === 'home') {
       if (isLoading) return <WalletSkeleton darkMode={darkMode} />
       return (
-        <WalletInfo
-          account={account}
-          balance={balance}
-          onDisconnect={disconnect}
-          onRefresh={handleRefresh}
-          darkMode={darkMode}
-        />
+        <div>
+          <PriceCard balance={balance} darkMode={darkMode} />
+          <WalletInfo
+            account={account}
+            balance={balance}
+            onDisconnect={disconnect}
+            onRefresh={handleRefresh}
+            darkMode={darkMode}
+          />
+        </div>
       )
     }
     if (activePage === 'send') {
@@ -120,6 +125,9 @@ function App() {
           onSelectContact={handleSelectContact}
         />
       )
+    }
+    if (activePage === 'analytics') {
+      return <Analytics transactions={transactions} darkMode={darkMode} />
     }
     if (activePage === 'history') {
       return <TransactionHistory transactions={transactions} darkMode={darkMode} />
@@ -148,7 +156,7 @@ function App() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-2xl font-bold">
-                <span className="text-purple-400">MATIC-Pay</span>
+                <span className="text-purple-400">CryptPay</span>
               </h1>
               <p className={darkMode ? 'text-gray-500 text-xs mt-1' : 'text-gray-400 text-xs mt-1'}>
                 Polygon Amoy Testnet
