@@ -10,7 +10,7 @@ const ConnectWallet = ({ account, isConnecting, error, onConnect, onDisconnect }
       <div className="mb-10 text-center">
         <div className="text-6xl mb-4">💎</div>
         <h1 className="text-4xl font-bold text-white mb-2">
-           <span className="text-purple-400">CryptPay</span>
+           <span className="text-purple-400">MATIC-Pay</span>
         </h1>
         <p className="text-gray-400 text-sm">
           Decentralized payments on Polygon

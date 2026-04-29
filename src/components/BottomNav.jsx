@@ -4,6 +4,8 @@ const BottomNav = ({ activePage, setActivePage, darkMode }) => {
   const tabs = [
     { id: 'home', label: 'Home', icon: '🏠' },
     { id: 'send', label: 'Send', icon: '💸' },
+    { id: 'contacts', label: 'Contacts', icon: '👥' },
+    { id: 'qr', label: 'QR', icon: '📷' },
     { id: 'history', label: 'History', icon: '📋' },
   ]
 
@@ -15,18 +17,18 @@ const BottomNav = ({ activePage, setActivePage, darkMode }) => {
   const inactiveColor = darkMode ? 'text-gray-500' : 'text-gray-400'
 
   return (
-    <div className={'fixed bottom-0 left-0 right-0 border-t px-4 py-2 z-50 ' + navBg}>
+    <div className={'fixed bottom-0 left-0 right-0 border-t px-2 py-2 z-50 ' + navBg}>
       <div className="flex justify-around items-center max-w-lg mx-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActivePage(tab.id)}
             className={
-              'flex flex-col items-center gap-1 px-6 py-2 rounded-xl transition-all duration-200 ' +
+              'flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 ' +
               (activePage === tab.id ? activeColor : inactiveColor)
             }
           >
-            <span className="text-xl">{tab.icon}</span>
+            <span className="text-lg">{tab.icon}</span>
             <span className="text-xs font-medium">{tab.label}</span>
             {activePage === tab.id && (
               <div className="w-1 h-1 rounded-full bg-purple-400" />

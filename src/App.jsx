@@ -9,6 +9,10 @@ import TransactionHistory from './components/TransactionHistory'
 import BottomNav from './components/BottomNav'
 import { WalletSkeleton } from './components/Skeleton'
 import PageTransition from './components/PageTransition'
+import RequestPayment from './components/RequestPayment'
+import PayPage from './components/PayPage'
+import QRPayment from './components/QRPayment'
+import Contacts from './components/Contacts'
 
 function App() {
   const {
@@ -25,6 +29,9 @@ function App() {
   const [activePage, setActivePage] = useState('home')
   const [darkMode, setDarkMode] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+  const [selectedContact, setSelectedContact] = useState(null)
+
+  const isPayPage = window.location.pathname === '/pay'
 
   useEffect(() => {
     if (darkMode) {
@@ -43,12 +50,13 @@ function App() {
     }
   }, [account])
 
-  const handleTransactionSent = (hash, recipient, amount, message) => {
+  const handleTransactionSent = (hash, recipient, amount, message, category) => {
     const newTx = {
       hash,
       recipient,
       amount,
       message: message || 'Payment',
+      category: category || 'other',
       timestamp: Date.now(),
     }
     setTransactions((prev) => [newTx, ...prev])
@@ -62,11 +70,23 @@ function App() {
     setTimeout(() => setIsLoading(false), 1000)
   }
 
+  const handleSelectContact = (contact) => {
+    setSelectedContact(contact)
+    setActivePage('send')
+  }
+
+  if (isPayPage) {
+    return (
+      <div>
+        <ToastContainer theme={darkMode ? 'dark' : 'light'} position="top-right" />
+        <PayPage darkMode={darkMode} />
+      </div>
+    )
+  }
+
   const renderPage = () => {
     if (activePage === 'home') {
-      if (isLoading) {
-        return <WalletSkeleton darkMode={darkMode} />
-      }
+      if (isLoading) return <WalletSkeleton darkMode={darkMode} />
       return (
         <WalletInfo
           account={account}
@@ -79,13 +99,30 @@ function App() {
     }
     if (activePage === 'send') {
       return (
-        <SendMatic onTransactionSent={handleTransactionSent} darkMode={darkMode} />
+        <SendMatic
+          onTransactionSent={handleTransactionSent}
+          darkMode={darkMode}
+          selectedContact={selectedContact}
+          onClearContact={() => setSelectedContact(null)}
+        />
+      )
+    }
+    if (activePage === 'request') {
+      return <RequestPayment account={account} darkMode={darkMode} />
+    }
+    if (activePage === 'qr') {
+      return <QRPayment account={account} darkMode={darkMode} />
+    }
+    if (activePage === 'contacts') {
+      return (
+        <Contacts
+          darkMode={darkMode}
+          onSelectContact={handleSelectContact}
+        />
       )
     }
     if (activePage === 'history') {
-      return (
-        <TransactionHistory transactions={transactions} darkMode={darkMode} />
-      )
+      return <TransactionHistory transactions={transactions} darkMode={darkMode} />
     }
   }
 
